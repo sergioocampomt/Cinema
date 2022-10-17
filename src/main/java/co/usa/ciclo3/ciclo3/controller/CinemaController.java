@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
+@CrossOrigin(origins="*", allowedHeaders="*")
 @RequestMapping("/api/Cinema")
 public class CinemaController {
     
@@ -25,13 +27,13 @@ public class CinemaController {
     private CinemaService cinemaService;
     
     @GetMapping("/all")
-    public List<Cinema> getCinemas(){
+    public List<Cinema> getAll(){
         return cinemaService.getAll();
     }
     
     @GetMapping("/{id}")
-    public Optional<Cinema> getCinema(@PathVariable("id") int cinemaId) {
-        return cinemaService.getCinema(cinemaId);
+    public Optional<Cinema> getCinema(@PathVariable("id") int id) {
+        return cinemaService.getCinema(id);
     }
     
     @PostMapping("/save")
@@ -48,9 +50,9 @@ public class CinemaController {
     
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int id){
-        return cinemaService.deleteCinema(id);
+    public boolean delete(@PathVariable("id") int cinemaId){
+        return cinemaService.deleteCinema(cinemaId);
     }
     
-  
+    
 }

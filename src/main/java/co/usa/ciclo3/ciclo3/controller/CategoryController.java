@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
+@CrossOrigin(origins="*", allowedHeaders="*")
 @RequestMapping("/api/Category")
 public class CategoryController {
     
@@ -30,8 +32,8 @@ public class CategoryController {
     }
     
     @GetMapping("/{id}")
-    public Optional<Category> getCategory(@PathVariable("id") int Id) {
-        return categoryService.getCategory(Id);
+    public Optional<Category> getCategory(@PathVariable("id") int id) {
+        return categoryService.getCategory(id);
     }
     
     @PostMapping("/save")
@@ -48,8 +50,8 @@ public class CategoryController {
     
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int id){
-        return categoryService.deleteCategory(id);
+    public boolean delete(@PathVariable("id") int gamaId){
+        return categoryService.deleteCategory(gamaId);
     }
     
     

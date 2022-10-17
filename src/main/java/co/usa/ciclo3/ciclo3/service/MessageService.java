@@ -17,8 +17,8 @@ public class MessageService {
         return messageRepository.getAll();
     }
 
-    public Optional<Message> getMessage(int messageId) {
-        return messageRepository.getMessage(messageId);
+    public Optional<Message> getMessage(int id) {
+        return messageRepository.getMessage(id);
     }
 
     public Message save(Message message){

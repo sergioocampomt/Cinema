@@ -17,8 +17,8 @@ public class ClientService {
         return clientRepository.getAll();
     }
     
-    public Optional<Client> getClient(int clientId){
-        return clientRepository.getClient(clientId);
+    public Optional<Client> getClient(int id){
+        return clientRepository.getClient(id);
     }
     
     public Client save(Client client){
@@ -40,13 +40,14 @@ public class ClientService {
             if(e.isPresent()){
                 if(client.getName()!=null){
                     e.get().setName(client.getName());
-                }            
-                if(client.getPassword()!=null){
-                    e.get().setPassword(client.getPassword());
-                }
+                } 
                 if(client.getAge()!=null){
                     e.get().setAge(client.getAge());
                 }
+                if(client.getPassword()!=null){
+                    e.get().setPassword(client.getPassword());
+                }
+             
                 clientRepository.save(e.get());
                 return e.get();
             }else{

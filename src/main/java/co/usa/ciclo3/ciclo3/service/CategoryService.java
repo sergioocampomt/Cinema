@@ -17,8 +17,8 @@ public class CategoryService {
         return categoryRepository.getAll();
     }
     
-    public Optional<Category> getCategory(int categoryId){
-        return categoryRepository.getCategory(categoryId);
+    public Optional<Category> getCategory(int id){
+        return categoryRepository.getCategory(id);
     }
     
     public Category save(Category category){

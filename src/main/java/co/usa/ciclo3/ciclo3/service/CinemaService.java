@@ -17,8 +17,8 @@ public class CinemaService {
         return cinemaRepository.getAll();
     }
     
-    public Optional<Cinema> getCinema(int cinemaId){
-        return cinemaRepository.getCinema(cinemaId);
+    public Optional<Cinema> getCinema(int id){
+        return cinemaRepository.getCinema(id);
     }
     
     public Cinema save(Cinema cinema){

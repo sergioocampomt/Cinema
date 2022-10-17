@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
+@CrossOrigin(origins="*", allowedHeaders="*")
 @RequestMapping("/api/Message")
 public class MessageController {
     
@@ -25,13 +27,13 @@ public class MessageController {
     private MessageService messageService;
     
     @GetMapping("/all")
-    public List<Message> getMessages(){
+    public List<Message> getAll(){
         return messageService.getAll();
     }
     
     @GetMapping("/{id}")
-    public Optional<Message> getMessage(@PathVariable("id") int messageId) {
-        return messageService.getMessage(messageId);
+    public Optional<Message> getMessage(@PathVariable("id") int id) {
+        return messageService.getMessage(id);
     }
     
     @PostMapping("/save")
@@ -48,8 +50,8 @@ public class MessageController {
     
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int id){
-        return messageService.deleteMessage(id);
+    public boolean delete(@PathVariable("id") int messageId){
+        return messageService.deleteMessage(messageId);
     }
     
     
